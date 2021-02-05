@@ -1,0 +1,16 @@
+{
+  "name": "safaladhikari1/pets3",
+  "authors": [
+    {
+      "name": "Safal Adhikari",
+      "email": "sadhikari5@mail.greenriver.edu"
+    },
+    {
+      "name": "Patrick Dang",
+      "email": "pdang2@mail.greenriver.edu"
+    }
+  ],
+  "require": {
+    "bcosca/fatfree-core": "dev-master"
+  }
+}
