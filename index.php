@@ -38,6 +38,21 @@ $f3->route('GET|POST /order', function ($f3) {
     echo $view->render("views/pet-home.html");
 });
 
+$f3->route('POST /order2', function () {
+
+    var_dump($_POST);
+
+    if(isset($_POST['color']))
+    {
+        $_SESSION['color'] = $_POST['color'];
+    }
+
+    $view = new Template();
+    echo $view->render("views/pet-order2.html");
+});
+
+
+
 
 $f3->run();
 
