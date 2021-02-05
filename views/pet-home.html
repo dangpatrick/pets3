@@ -16,6 +16,13 @@
 
 <div class="container">
 
+    <select class="form-control" name="color" id="color">
+        <option>--Select a color--</option>
+        <repeat group="{{ @colors }}" value="{{ @colorOption }}">
+            <option>{{ @colorOption }}</option>
+        </repeat>
+    </select>
+
 </div>
 
 <!-- Optional JavaScript -->
