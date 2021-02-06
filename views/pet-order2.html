@@ -7,17 +7,44 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <title>Pet 2</title>
+    <title>Pet Order2</title>
 </head>
 <body>
-<nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Pets 3 - 2</span>
-</nav>
 
 <div class="container">
 
+    <form action="summary" method="post" class="form-horizontal">
 
+        <!-- select size -->
+        <div class="form-group">
+            <label>Select your pet's size</label>
+            <div class="col-sm-4">
+                <repeat group="{{ @sizes }}" value="{{ @size }}">
+                    <label><input type="radio"
+                                  name="size"
+                                  id="{{ @size }}"
+                                  value="{{ @size }}"> {{ ucfirst(@size)}}
+                        </input></label><br>
+                </repeat>
+            </div>
+        </div>
 
+        <!-- select accessories -->
+        <div class="form-group">
+            <label>Select pet accessories</label>
+            <div class="col-sm-4">
+                <repeat group="{{ @access }}" value="{{ @acc }}">
+                    <label><input type="checkbox"
+                                  name="access[]"
+                                  value="{{ @cacc }}"> {{ ucfirst(@acc) }}</label><br>
+                </repeat>
+            </div>
+        </div>
+
+        <div>
+            <input class="btn btn-default" type="submit" value="Place Order">
+        </div>
+    </form>
 </div>
 
 <!-- Optional JavaScript -->

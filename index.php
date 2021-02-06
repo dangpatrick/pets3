@@ -18,41 +18,53 @@ $f3 = Base::instance();
 // has to come after base instance
 $f3->set('DEBUG', 3);
 
-// Define a default route (home page)
+// Define a default route (order route)
 $f3->route('GET|POST /order', function ($f3) {
+    $colors = getColors();
 
     //Check if the form has been posted
-    if($_SERVER['REQUEST_METHOD' == 'POST']){
-
-        //Validate the data
-        if(empty($_POST['pet'])){
-            echo 'Post is empty!';
-        }else{
-            echo'Post is not empty!';
-        }
-    }
-    $colors = getColors();
-    $f3->set('colors', $colors);
-
-    $view = new Template();
-    echo $view->render("views/pet-home.html");
-});
-
-$f3->route('POST /order2', function () {
-
-    var_dump($_POST);
-
     if(isset($_POST['color']))
     {
         $_SESSION['color'] = $_POST['color'];
     }
 
+    $f3->set('colors', $colors);
+    $view = new Template();
+    echo $view->render("views/pet-order.html");
+});
+
+// Order 2 Route
+$f3->route('POST /order2', function ($f3) {
+
+    var_dump($_POST);
+
+    $sizes = getSizes();
+    $access = getAccessories();
+
+    if(isset($_POST['size']) || isset($_POST['access']))
+    {
+        $_SESSION['size'] = $_POST['size'];
+        $_SESSION['access'] = $_POST['access'];
+    }
+
+    $f3->set('sizes', $sizes);
+    $f3->set('access', $access);
+
     $view = new Template();
     echo $view->render("views/pet-order2.html");
 });
 
+//Summary route
+$f3->route('POST /summary', function() {
+    //echo '<h1>Thank you for your order!</h1>';
+    //var_dump($_POST);
+    var_dump($_POST);
 
+    $view = new Template();
+    echo $view->render('views/summary.html');
 
+    session_destroy();
+});
 
 $f3->run();
 
