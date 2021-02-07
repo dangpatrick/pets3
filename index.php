@@ -18,14 +18,29 @@ $f3 = Base::instance();
 // has to come after base instance
 $f3->set('DEBUG', 3);
 
-// Define a default route (order route)
+// Define a default route (home page)
+$f3->route('GET /', function (){
+   $view = new Template();
+   echo $view->render("views/pet-home.html");
+});
+
+// Define a route (order route)
 $f3->route('GET|POST /order', function ($f3) {
     $colors = getColors();
 
-    //Check if the form has been posted
-    if(isset($_POST['color']))
+    // Check if the form has been posted
+    if($_SERVER['REQUEST_METHOD'] == 'POST')
     {
-        $_SESSION['color'] = $_POST['color'];
+        // validate
+        if(empty($_POST['pet']))
+        {
+
+
+        }
+        else
+        {
+
+        }
     }
 
     $f3->set('colors', $colors);
@@ -34,18 +49,20 @@ $f3->route('GET|POST /order', function ($f3) {
 });
 
 // Order 2 Route
-$f3->route('POST /order2', function ($f3) {
+$f3->route('POST /order2', function ($f3)
+{
+    if(isset($_POST['petType']))
+    {
+        $_SESSION['petType'] = $_POST['petType'];
+    }
 
-    var_dump($_POST);
+    if(isset($_POST['color']))
+    {
+        $_SESSION['color'] = $_POST['color'];
+    }
 
     $sizes = getSizes();
     $access = getAccessories();
-
-    if(isset($_POST['size']) || isset($_POST['access']))
-    {
-        $_SESSION['size'] = $_POST['size'];
-        $_SESSION['access'] = $_POST['access'];
-    }
 
     $f3->set('sizes', $sizes);
     $f3->set('access', $access);
@@ -55,10 +72,10 @@ $f3->route('POST /order2', function ($f3) {
 });
 
 //Summary route
-$f3->route('POST /summary', function() {
-    //echo '<h1>Thank you for your order!</h1>';
-    //var_dump($_POST);
-    var_dump($_POST);
+$f3->route('POST /summary', function()
+{
+    $_SESSION['size'] = $_POST['size'];
+    $_SESSION['access'] = implode(', ', $_POST['access']);
 
     $view = new Template();
     echo $view->render('views/summary.html');

@@ -11,14 +11,21 @@
 </head>
 <body>
 <nav class="navbar navbar-light bg-light">
-    <span class="navbar-brand mb-0 h1">Pets 3</span>
+    <span class="navbar-brand mb-0 h1">Pet Order</span>
 </nav>
 
 <div class="container">
-
-    <h2>Select your pet's color:</h2>
     <form method="post" action="order2">
+
+        <h1>Order a pet</h1>
+
         <div class="form-group">
+            <label for="petAsk">What kind of pet would you like to order?</label>
+            <input type="text" name="petType" id="petAsk" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="color">Select a color</label>
             <select class="form-control" name="color" id="color">
                 <option>--Select a color--</option>
                 <repeat group="{{ @colors }}" value="{{ @colorOption }}">
@@ -31,7 +38,6 @@
             <input type="submit" class="btn btn-outline-secondary" value="Next">
         </div>
     </form>
-
 </div>
 
 <!-- Optional JavaScript -->

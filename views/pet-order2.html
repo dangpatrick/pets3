@@ -10,6 +10,9 @@
     <title>Pet Order2</title>
 </head>
 <body>
+<nav class="navbar navbar-light bg-light">
+    <span class="navbar-brand mb-0 h1">Pet Order2</span>
+</nav>
 
 <div class="container">
 
@@ -23,7 +26,7 @@
                     <label><input type="radio"
                                   name="size"
                                   id="{{ @size }}"
-                                  value="{{ @size }}"> {{ ucfirst(@size)}}
+                                  value="{{ @size }}"> {{ @size }}
                         </input></label><br>
                 </repeat>
             </div>
@@ -35,8 +38,9 @@
             <div class="col-sm-4">
                 <repeat group="{{ @access }}" value="{{ @acc }}">
                     <label><input type="checkbox"
+                                  id="access"
                                   name="access[]"
-                                  value="{{ @cacc }}"> {{ ucfirst(@acc) }}</label><br>
+                                  value="{{ @acc }}"> {{ @acc }}</input></label><br>
                 </repeat>
             </div>
         </div>
